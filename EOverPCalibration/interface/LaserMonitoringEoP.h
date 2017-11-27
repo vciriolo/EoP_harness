@@ -51,9 +51,11 @@ public :
 
 	virtual void     Init(TTree *tree, TTree *treeMC, int useRegression);
 
-	virtual void     Loop(float, float, std::string, int, int, std::string, std::string, std::string, std::string, int);
+	virtual void     Loop(float, float, std::string, int, int, std::string, std::string, std::string, std::string, int, int, int, int, int, int, int, int);
 
 	virtual void     setLaserPlotStyle();
+	
+	std::map<int,int> PNregion_ee_map(std::string);
 
 	TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 	TTree          *fChainMC;   //!pointer to the analyzed TTree or TChain
@@ -67,8 +69,11 @@ public :
 	int nPU;
 	int nPV;
 	float avgLCSCEle[3], etaSCEle[3], phiSCEle[3], energySCEle[3], esEnergySCEle[3], pAtVtxGsfEle[3], energySCEle_corr[3];
-	int seedXSCEle[3], seedYSCEle[3];//, seedZside;
+	short seedXSCEle[3], seedYSCEle[3];//, seedZside;
+			short chargeEle[3];
 	//  float seedLaserAlphaSCEle1;
+
+	std::map<int,int> PN_ee_map;
 
 };
 
