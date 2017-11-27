@@ -313,7 +313,11 @@ int main(int argc, char **argv)
 	std::string dayZOOM;
 	std::string LUMI;
 	int EoPvsPU;
-
+	int IetaMin = -1000;
+	int IetaMax = -1000; 
+	int IphiMin = -1000;
+	int IphiMax = -1000;
+	int ee_PNregion = -1, etaRing_min, etaRing_max;
 	//------------------------------ setting option categories
 	po::options_description desc("Main options");
 	po::options_description outputOption("Output options");
@@ -445,6 +449,13 @@ int main(int argc, char **argv)
 	("dayZOOM", po::value<string>(&dayZOOM)->default_value("10-8-2015"), "day ZOOM")
 	("LUMI", po::value<string>(&LUMI)->default_value("1.9"), "LUMI")
 	("EoPvsPU", po::value<int>(&EoPvsPU)->default_value(0), "EoPvsPU")
+	("IetaMin", po::value<int>(&IetaMin)->default_value(-1000),"ieta min")
+    ("IetaMax", po::value<int>(&IetaMax)->default_value(-1000),"ieta max")
+    ("IphiMin", po::value<int>(&IphiMin)->default_value(-1000),"iphi min")
+    ("IphiMax", po::value<int>(&IphiMax)->default_value(-1000),"iphi max")    
+    ("ee_PNregion", po::value<int>(&ee_PNregion)->default_value(-1), "EE PN region to monitor")
+    ("etaRing_min", po::value<int>(&etaRing_min)->default_value(-1), "min eta ring in EE")
+    ("etaRing_max", po::value<int>(&etaRing_max)->default_value(-1), "max eta ring in EE")
 	;
 	EoverPOption.add_options()
 	("EOverPCalib",  "call the E/p calibration")
@@ -1141,7 +1152,7 @@ int main(int argc, char **argv)
 		std::cout << "start monitoring. " << std::endl;
 
 		LaserMonitoringEoP analyzer(data, mc, useRegression);
-		analyzer.Loop(yMIN, yMAX, EBEE, evtsPerPoint, useRegression, dayMin, dayMax, dayZOOM, LUMI, EoPvsPU);
+		analyzer.Loop(yMIN, yMAX, EBEE, evtsPerPoint, useRegression, dayMin, dayMax, dayZOOM, LUMI, EoPvsPU, IetaMin, IetaMax, IphiMin, IphiMax, ee_PNregion, etaRing_min, etaRing_max);
 
 	}
 
