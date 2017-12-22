@@ -1859,6 +1859,7 @@
 
 	}
 
+}
 
 	void LaserMonitoringEoP::setLaserPlotStyle()
 	{
